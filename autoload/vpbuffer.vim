@@ -19,7 +19,7 @@ function! s:_call_buffer(buffer_ls_list, id, idx) abort
 	if a:idx ==# -1
 		return
 	endif
-	execute 'b ' . s:buffer_num_list[a:idx-1]
+	execute 'silent b ' . s:buffer_num_list[a:idx-1]
 endfunction
 
 function! vpbuffer#list() abort

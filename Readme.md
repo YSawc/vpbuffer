@@ -4,11 +4,11 @@ This plugin is vim_buffer manager .
 # Installation
 ex vim-plug
 ```
-Plug 'YSawc/VPBuffer'
+Plug 'YSawc/vpbuffer'
 ```
 
 # Usage
 call buffer with popup menu .
 ```
-:VPBuffer#list
+:LoadBuffer
 ```

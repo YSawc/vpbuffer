@@ -11,7 +11,6 @@ function! s:_set_buffer_list_before() abort
 		call add(s:buffer_num_list, matchstr(s:buffer_ls_list[i], '\d\+'))
 		call add(s:buffer_list, matchstr(s:buffer_ls_list[i], '\"\zs.*\ze\"'))
 		let s:buffer_dict[s:buffer_num_list[i]] = matchstr(s:buffer_ls_list[i], '\"\zs.*\ze\"')
-		echo s:buffer_dict
 		call add(s:buffer_num_integer_list, str2nr(s:buffer_num_list[i], 10))
 	endfor
 endfunction

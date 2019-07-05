@@ -1,6 +1,8 @@
 # Vbuffer
 This plugin is vim_buffer manager .
 
+![vpbuffer](https://github.com/YSawc/vpbuffer/blob/master/screenshots/vpbuffer.gif)
+
 # Installation
 ex vim-plug
 ```

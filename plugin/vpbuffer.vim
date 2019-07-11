@@ -5,6 +5,7 @@ command! -nargs=0 LoadBuffer call vpbuffer#list()
 
 " active when vpb_flag eq 1 {{{
 if g:vpbuffer_key_map_flag == 1
+
 endif
 " }}}
 

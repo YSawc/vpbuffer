@@ -33,3 +33,5 @@ call s:vpb_point_motion_test({
 	\ 'g'				: echo 'call_g',
 	\ })
 " }}}
+
+" TODO: location buffer can call but not display this (with flag)

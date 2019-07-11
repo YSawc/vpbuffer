@@ -6,12 +6,21 @@ endif
 
 function! s:_set_buffer_list_before() abort
 	let s:buffer_ls_list = split(execute('ls'), '\n')
+	" TODO" ex.. buffer list = [num, {buffer_name, buffer_file_type}]
 	let s:buffer_list = []
 	let s:buffer_num_list = []
 	let s:buffer_dict = {}
 	let s:buffer_num_integer_list = []
+	echo s:buffer_ls_list
 
 	for i in range(len(s:buffer_ls_list))
+		echo s:buffer_ls_list[i]
+
+		" return if filetype is qf
+		if s:buffer_ls_list[i]
+
+		endif
+
 		call add(s:buffer_num_list, matchstr(s:buffer_ls_list[i], '\d\+'))
 		call add(s:buffer_list, matchstr(s:buffer_ls_list[i], '\"\zs.*\ze\"'))
 		let s:buffer_dict[s:buffer_num_list[i]] = matchstr(s:buffer_ls_list[i], '\"\zs.*\ze\"')

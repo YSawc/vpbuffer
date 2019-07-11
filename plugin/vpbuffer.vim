@@ -10,8 +10,13 @@ endif
 " }}}
 
 function! s:vpb_point_motion(motions) abort
-	[key, dict] in items(a:motions)
+	" [key, dict] in items(a:motions)
 endfunction
+
+function! s:vpb_point_motion_test(motions) abort
+	" [key, dict] in items(a:motions)
+endfunction
+
 
 " point_call: {{{
 " defalult key_mapping
@@ -26,13 +31,6 @@ call s:vpb_point_motion({
 
 " point_call_test: {{{
 " defalult key_mapping
-call s:vpb_point_motion_test({
-	\ 'a'				: echo 'call_a',
-	\ 'b'				: echo 'call_s',
-	\ 'd'				: echo 'call_d',
-	\ 'f'				: echo 'call_f',
-	\ 'g'				: echo 'call_g',
-	\ })
 " }}}
 
 " TODO: location buffer can call but not display this (with flag)

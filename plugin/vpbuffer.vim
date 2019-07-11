@@ -19,8 +19,9 @@ call s:vpb_point_motion({
 	\ 'f'				: { 'point' : 4 },
 	\ 'g'				: { 'point' : 5 },
 	\ })
+" }}}
 
-
+" point_call_test: {{{
 call s:vpb_point_motion_test({
 	\ 'a'				: echo 'call_a',
 	\ 'b'				: echo 'call_s',

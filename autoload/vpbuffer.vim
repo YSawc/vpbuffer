@@ -1,9 +1,5 @@
 scriptencoding utf-8
 
-if !exists('g:vpbuffer_key_map_flag')
-	let g:vpbuffer_key_map_flag = 0
-endif
-
 function! s:_set_buffer_list_before() abort
 	let s:buffer_ls_list = split(execute('ls'), '\n')
 	let s:buffer_list = []

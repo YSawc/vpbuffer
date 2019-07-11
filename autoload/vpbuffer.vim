@@ -1,5 +1,9 @@
 scriptencoding utf-8
 
+if !exists('g:vpbuffer_key_map_flag')
+	let g:vpbuffer_key_map_flag = 0
+endif
+
 function! s:_set_buffer_list_before() abort
 	let s:buffer_ls_list = split(execute('ls'), '\n')
 	let s:buffer_list = []
@@ -25,9 +29,14 @@ endfunction
 function! vpbuffer#list() abort
 	execute s:_set_buffer_list_before()
 
+	let l:vpbuffer_key_map_flag = 1
+
 	call popup_menu(s:buffer_list, {
 			\ 'filter': 'popup_filter_menu',
 			\ 'borderchars': [' ',' ',' ',' ','*','*','*','*'],
 			\ 'callback': function('s:_call_buffer', [s:buffer_ls_list])
 			\ })
+
+	let l:vpbuffer_key_map_flag = 0
+
 endfunction

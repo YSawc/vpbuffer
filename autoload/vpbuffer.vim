@@ -6,8 +6,10 @@ endif
 
 function! s:_set_buffer_list_before() abort
 	let s:buffer_ls_list = split(execute('ls'), '\n')
-	" TODO" ex.. buffer list = [num, {buffer_name, buffer_file_type}]
-	let s:buffer_list = []
+	" TODO" ex.. buffer list = {num, [buffer_name, buffer_file_type]}
+		" ex ) "3  a-  "[ロケーションリスト]"         行 0"
+		" 3:num a-:buf_type "[ロケーションリスト]":buf_name
+let s:buffer_list = []
 	let s:buffer_num_list = []
 	let s:buffer_dict = {}
 	let s:buffer_num_integer_list = []

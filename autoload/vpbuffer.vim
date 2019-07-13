@@ -4,6 +4,10 @@ if !exists('g:vpbuffer_key_map_flag')
 	let g:vpbuffer_key_map_flag = 0
 endif
 
+let g:vpbuffer_key_map_ex= {'a' : 1}
+
+
+
 function! s:_set_buffer_list_before() abort
 	" echo snext_var
 	let s:buffer_ls_list = split(execute('ls'), '\n')
@@ -21,7 +25,7 @@ function! s:_set_buffer_list_before() abort
 	for i in range(len(s:buffer_ls_list))
 
 		" echo getbufinfo(i)
-		" echo matchstr(s:buffer_ls_list[i], '\(\d\+\s\+\)\zs\S\.\{-}-\@!.*\(\s\)\ze')
+		" echo matchstr(s:buffer_ls_list[i], '\(\d\+\s\+\)\zs\S\.\{-})-\@!.*\(\s\)\ze')
 		" echo s:buffer_ls_list[i]
 
 		" return if filetype is qf
@@ -41,6 +45,20 @@ function! s:_call_buffer(buffer_ls_list, id, idx) abort
 		return
 	endif
 	execute 'silent b ' . s:buffer_num_list[a:idx-1]
+endfunction
+
+function! _call_with_key(key)
+	" echo g:vpbuffer_key_map_ex[a:key]
+	" call 'silent b ' . s:buffer_num_list[vpbuffer_key_map_ex[a:key]]
+	" call 'silent b ' . s:buffer_num_list[g:vpbuffer_key_map_ex[a:key]]
+	" echo type(g:vpbuffer_key_map_ex[a:key])
+endfunction
+
+function! vpbuffer#call_with_key(key)
+	execute s:_set_buffer_list_before()
+	" call _call_with_key(a:key)
+	" echo g:vpbuffer_key_map_ex[a:key]
+	execute 'silent b ' . s:buffer_num_list[g:vpbuffer_key_map_ex[a:key]]
 endfunction
 
 function! vpbuffer#list() abort

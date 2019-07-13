@@ -5,23 +5,29 @@ if !exists('g:vpbuffer_key_map_flag')
 endif
 
 function! s:_set_buffer_list_before() abort
+	" echo snext_var
 	let s:buffer_ls_list = split(execute('ls'), '\n')
 	" TODO" ex.. buffer list = {num, [buffer_name, buffer_file_type]}
 		" ex ) "3  a-  "[ロケーションリスト]"         行 0"
 		" 3:num a-:buf_type "[ロケーションリスト]":buf_name
-let s:buffer_list = []
+		" echo matchstr('3 a- "tst"', '\(\d\+\s\+\)\zs\S\+')
+	let s:buffer_list = []
 	let s:buffer_num_list = []
 	let s:buffer_dict = {}
 	let s:buffer_num_integer_list = []
 	echo s:buffer_ls_list
 
+	let s:buffer_ls_list = split(execute('ls'), '\n')
 	for i in range(len(s:buffer_ls_list))
-		echo s:buffer_ls_list[i]
+
+		" echo getbufinfo(i)
+		" echo matchstr(s:buffer_ls_list[i], '\(\d\+\s\+\)\zs\S\.\{-}-\@!.*\(\s\)\ze')
+		" echo s:buffer_ls_list[i]
 
 		" return if filetype is qf
-		if s:buffer_ls_list[i]
+		" if s:buffer_ls_list[i]
 
-		endif
+		" endif
 
 		call add(s:buffer_num_list, matchstr(s:buffer_ls_list[i], '\d\+'))
 		call add(s:buffer_list, matchstr(s:buffer_ls_list[i], '\"\zs.*\ze\"'))

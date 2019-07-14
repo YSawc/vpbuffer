@@ -9,8 +9,6 @@ endif
 
 let g:vpbuffer_key_map_ex= {'a' : 1}
 
-
-
 function! s:_set_buffer_list_before() abort
 	" echo snext_var
 	let s:buffer_ls_list = split(execute('ls'), '\n')

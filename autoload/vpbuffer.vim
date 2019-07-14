@@ -1,3 +1,6 @@
+let s:save_cpo = &cpo
+set cpo&vim
+
 scriptencoding utf-8
 
 if !exists('g:vpbuffer_key_map_flag')

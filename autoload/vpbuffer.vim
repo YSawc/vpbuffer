@@ -1,3 +1,6 @@
+let s:save_cpo = &cpo
+set cpo&vim
+
 scriptencoding utf-8
 
 function! s:_set_buffer_list_before() abort

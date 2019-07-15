@@ -63,6 +63,12 @@ function! vpbuffer#call_with_key(key)
 endfunction
 
 function! vpbuffer#list() abort
+
+	if !has("patch-8.1.1523")
+		echo "this version doesn't support popup window. please update version to 8.1.1523"
+		return
+	endif
+
 	execute s:_set_buffer_list_before()
 
 	let l:vpbuffer_key_map_flag = 1

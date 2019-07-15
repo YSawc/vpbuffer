@@ -26,6 +26,13 @@ function! s:_call_buffer(buffer_ls_list, id, idx) abort
 endfunction
 
 function! vpbuffer#list() abort
+
+	if !has("patch-8.1.1523")
+		echo "this vim version doesn't support popup window. please update version to 8.1.1523"
+		return
+	endif
+
+
 	execute s:_set_buffer_list_before()
 
 	call popup_menu(s:buffer_list, {

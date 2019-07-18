@@ -1,7 +1,7 @@
 let s:save_cpo = &cpo
-			\ 'filter': 'popup_filter_menu',
 set cpo&vim
 
+			" \ 'filter': 'popup_filter_menu',
 scriptencoding utf-8
 
 if !exists('g:vpbuffer_key_map_flag')
@@ -9,8 +9,10 @@ if !exists('g:vpbuffer_key_map_flag')
 endif
 
 let g:vpbuffer_key_map_ex= {'a' : 1}
+let g:tip_test_i = 100
 
 function! s:_set_buffer_list_before() abort
+	let g:tip_test_i = 100
 	" echo snext_var
 	let s:buffer_ls_list = split(execute('ls'), '\n')
 	" TODO" ex.. buffer list = {num, [buffer_name, buffer_file_type]}
@@ -23,6 +25,7 @@ function! s:_set_buffer_list_before() abort
 		" /\d\s\+\zs[^-]\+\ze\s"
 		" echo matchstr('3 a0 "tet"', '/\d\s\+\zs[^-]\+\ze\s')
 	" }}}
+
 	let s:buffer_list = []
 	let s:buffer_num_list = []
 	let s:buffer_dict = {}
@@ -46,6 +49,9 @@ function! s:_set_buffer_list_before() abort
 		let s:buffer_dict[s:buffer_num_list[i]] = matchstr(s:buffer_ls_list[i], '\"\zs.*\ze\"')
 		call add(s:buffer_num_integer_list, str2nr(s:buffer_num_list[i], 10))
 	endfor
+
+	" TODO: update popup_display
+	call add(s:buffer_list, printf("%d", g:tip_test_i))
 endfunction
 
 function! s:_call_buffer(buffer_ls_list, id, idx) abort
@@ -89,24 +95,32 @@ function! vpbuffer#list() abort
 	let l:vpbuffer_key_map_flag = 0
 
 	" TIP:call popup idx test {{{
+	" ショートカットキーをハンドリングする
     func! MyMenuFilter(id, key)
-      " ショートカットキーをハンドリングする
-      if a:key == 'S'
-         call popup_close(a:id, 1)
-         return 1
-      endif
-      if a:key == 'C'
-         call popup_close(a:id, 2)
-         return 1
-      endif
-      if a:key == 'D'
-         call popup_close(a:id, 3)
-         return 1
-      endif
+		if a:key == 'h'
+			let g:tip_test_i = -1
+			echo g:tip_test_i
+		endif
+		if a:key == 'l'
+			let g:tip_test_i = 1
+			echo g:tip_test_i
+		endif
+		if a:key == 'a'
+			call popup_close(a:id, 1)
+			return 1
+		endif
+		if a:key == 'b'
+			call popup_close(a:id, 2)
+			return 1
+		endif
+		if a:key == 'c'
+			call popup_close(a:id, 3)
+			return 1
+	endif
 
-      " ショートカットキーではない場合は通常のフィルタに渡す
-      return popup_filter_menu(a:id, a:key)
-    endfunc
+" ショートカットキーではない場合は通常のフィルタに渡す
+	return popup_filter_menu(a:id, a:key)
+endfunc
 
 	" }}}
 

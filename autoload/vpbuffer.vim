@@ -13,9 +13,15 @@ function! s:_set_buffer_list_before() abort
 	" echo snext_var
 	let s:buffer_ls_list = split(execute('ls'), '\n')
 	" TODO" ex.. buffer list = {num, [buffer_name, buffer_file_type]}
+
+	" Tip: test {{{
 		" ex ) "3  a-  "[ロケーションリスト]"         行 0"
-		" 3:num a-:buf_type "[ロケーションリスト]":buf_name
-		" echo matchstr('3 a- "tst"', '\(\d\+\s\+\)\zs\S\+')
+		" ex ) "3  a+  "[ロケーションリスト]"         行 0"
+		" ex ) "3  #a+  "[ロケーションリスト]"         行 0"
+		" ex ) "30  #a+  "[ロケーションリスト]"         行 0"
+		" /\d\s\+\zs[^-]\+\ze\s"
+		" echo matchstr('3 a0 "tet"', '/\d\s\+\zs[^-]\+\ze\s')
+	" }}}
 	let s:buffer_list = []
 	let s:buffer_num_list = []
 	let s:buffer_dict = {}

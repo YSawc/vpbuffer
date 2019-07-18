@@ -1,4 +1,5 @@
 let s:save_cpo = &cpo
+			\ 'filter': 'popup_filter_menu',
 set cpo&vim
 
 scriptencoding utf-8
@@ -80,11 +81,34 @@ function! vpbuffer#list() abort
 	let l:vpbuffer_key_map_flag = 1
 
 	call popup_menu(s:buffer_list, {
-			\ 'filter': 'popup_filter_menu',
+			\ 'filter': 'MyMenuFilter',
 			\ 'borderchars': [' ',' ',' ',' ','*','*','*','*'],
 			\ 'callback': function('s:_call_buffer', [s:buffer_ls_list])
 			\ })
 
 	let l:vpbuffer_key_map_flag = 0
+
+	" TIP:call popup idx test {{{
+    func! MyMenuFilter(id, key)
+      " ショートカットキーをハンドリングする
+      if a:key == 'S'
+         call popup_close(a:id, 1)
+         return 1
+      endif
+      if a:key == 'C'
+         call popup_close(a:id, 2)
+         return 1
+      endif
+      if a:key == 'D'
+         call popup_close(a:id, 3)
+         return 1
+      endif
+
+      " ショートカットキーではない場合は通常のフィルタに渡す
+      return popup_filter_menu(a:id, a:key)
+    endfunc
+
+	" }}}
+
 
 endfunction

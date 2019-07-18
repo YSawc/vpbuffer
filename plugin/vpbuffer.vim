@@ -40,7 +40,6 @@ call s:vpb_point_motion({
 endif
 " }}}
 
-
 " point_call_test: {{{
 " defalult key_mapping
 " }}}
